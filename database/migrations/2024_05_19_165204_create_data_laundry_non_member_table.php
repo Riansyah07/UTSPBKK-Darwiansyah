@@ -11,9 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_laundry_non_member', function (Blueprint $table) {
-            $table->id();
+        Schema::create('data_laundry_nonmember', function (Blueprint $table) {
+            $table->bigIncrements('no_transaksi');
+            $table->date('tgl_transaksi');
+            $table->string('nama_customer', 150);
+            $table->text('alamat');
+            $table->string('no_telp', 16);
+            $table->unsignedBigInteger('id_pegawai');
+            $table->text('keterangan');
+            $table->enum('status_laundry', ['menunggu', 'diproses', 'selesai']);
+            $table->enum('status_pembayaran', ['bayar', 'belum']);
+            $table->text('lokasi_kirim');
             $table->timestamps();
+
+            $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawai')->onDelete('cascade');
         });
     }
 

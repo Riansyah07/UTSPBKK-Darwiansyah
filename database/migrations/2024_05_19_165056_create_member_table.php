@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('member', function (Blueprint $table) {
-            $table->unsignedBigInteger('member_id');
-            $table->openssl_get_privatekey('member_id','no_identitas');
-            $table->int('member_id')->unique();
-            $table->varchar('nama_member', 150);
-            $table->varchar('password', 100);
+            $table->bigIncrements('member_id');
+            $table->string('no_identitas', 16)->unique();
+            $table->string('nama_member', 150);
+            $table->string('password', 100);
             $table->text('alamat');
-            $table->varchar('no_hp', 15);
+            $table->string('no_hp', 15);
             $table->date('tgl_join');
             $table->timestamps();
+            $table->primary(['member_id', 'no_identitas']);
         });
     }
 

@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('barang', function (Blueprint $table) {
-            $table->foreign('kode_barang','nama_barang');
-            $table->varchar('nama_barang', 150);
-            $table->int('harga');
+            $table->string('kode_barang')->primary();
+            $table->string('nama_barang', 150);
+            $table->integer('harga');
             $table->timestamps();
         });
     }
